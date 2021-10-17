@@ -1,0 +1,5 @@
+_dev
+node_modules
+dist
+build
+jest.config.js

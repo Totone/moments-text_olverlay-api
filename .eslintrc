@@ -1,0 +1,23 @@
+{
+    "root": true,
+    "parser": "@typescript-eslint/parser",
+    "plugins": [
+        "@typescript-eslint"
+    ],
+    "extends": [
+        "eslint:recommended",
+        "plugin:@typescript-eslint/eslint-recommended",
+        "plugin:@typescript-eslint/recommended"
+    ],
+    "rules": {
+        "no-extra-semi": "error",
+        "semi": "off",
+        "no-trailing-spaces": "warn",
+        "no-multi-spaces": "warn",
+        "no-whitespace-before-property": "error",
+        "comma-style": ["error", "last"],
+        "no-multiple-empty-lines": ["warn", {"max": 2, "maxEOF": 0}],
+        "eol-last": ["warn", "never"],
+        "arrow-spacing": "warn"
+    }
+}
