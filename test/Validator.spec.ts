@@ -22,7 +22,7 @@ describe("Validator", () => {
                 try {
                     funct(mockTestVideo)
                 } catch (e) {
-                    expect(e).toBeInstanceOf(ProcessError)
+                    expect(e).not.toBeNull()
                     if (e instanceof ProcessError) {
                         expect(e.code).toBe(400)
                         expect(e.message).toBe(ERR_MSG.INVALID_PARAM.TEST_VIDEO.INPUT)
@@ -37,7 +37,7 @@ describe("Validator", () => {
                 try {
                     funct(mockTestVideo)
                 } catch (e) {
-                    expect(e).toBeInstanceOf(ProcessError)
+                    expect(e).not.toBeNull()
                     if (e instanceof ProcessError) {
                         expect(e.code).toBe(400)
                         expect(e.message).toBe(ERR_MSG.INVALID_PARAM.TEST_VIDEO.OUTPUT)
@@ -52,7 +52,7 @@ describe("Validator", () => {
                 try {
                     funct(mockTestVideo)
                 } catch (e) {
-                    expect(e).toBeInstanceOf(ProcessError)
+                    expect(e).not.toBeNull()
                     if (e instanceof ProcessError) {
                         expect(e.code).toBe(400)
                         expect(e.message).toBe(ERR_MSG.INVALID_PARAM.TEST_VIDEO.DURATION)
@@ -60,14 +60,17 @@ describe("Validator", () => {
                 }
             })
         })
-        describe("input", () => {
+        describe("resolution", () => {
             it("throws an error if `resolution.x` param is negative", () => {
-                const mockTestVideo = { ...validTestVideo }
+                const mockTestVideo = {
+                    ...validTestVideo,
+                    resolution: { ...validTestVideo.resolution }
+                }
                 mockTestVideo.resolution.x = -1
                 try {
                     funct(mockTestVideo)
                 } catch (e) {
-                    expect(e).toBeInstanceOf(ProcessError)
+                    expect(e).not.toBeNull()
                     if (e instanceof ProcessError) {
                         expect(e.code).toBe(400)
                         expect(e.message).toBe(ERR_MSG.INVALID_PARAM.TEST_VIDEO.RESOLUTION)
@@ -75,12 +78,15 @@ describe("Validator", () => {
                 }
             })
             it("throws an error if `resolution.y` param is negative", () => {
-                const mockTestVideo = { ...validTestVideo }
+                const mockTestVideo = {
+                    ...validTestVideo,
+                    resolution: { ...validTestVideo.resolution }
+                }
                 mockTestVideo.resolution.y = -1
                 try {
                     funct(mockTestVideo)
                 } catch (e) {
-                    expect(e).toBeInstanceOf(ProcessError)
+                    expect(e).not.toBeNull()
                     if (e instanceof ProcessError) {
                         expect(e.code).toBe(400)
                         expect(e.message).toBe(ERR_MSG.INVALID_PARAM.TEST_VIDEO.RESOLUTION)
@@ -122,7 +128,7 @@ describe("Validator", () => {
                 try {
                     funct(mockTextEffect, validTestVideo)
                 } catch (error) {
-                    expect(error).toBeInstanceOf(ProcessError)
+                    expect(error).not.toBeNull()
                     if (error instanceof ProcessError) {
                         expect(error.code).toBe(400)
                         expect(error.message).toBe(ERR_MSG.INVALID_PARAM.TEXT_EFFECT.TEXT_STRING)
@@ -132,12 +138,15 @@ describe("Validator", () => {
         })
         describe("coordinates", () => {
             it("throws an error if `coordinates.x` param is negative", () => {
-                const mockTextEffect = { ...validTextEffect }
+                const mockTextEffect = {
+                    ...validTextEffect,
+                    coordinates: { ...validTextEffect.coordinates }
+                }
                 mockTextEffect.coordinates.x = -1
                 try {
                     funct(mockTextEffect, validTestVideo)
                 } catch (error) {
-                    expect(error).toBeInstanceOf(ProcessError)
+                    expect(error).not.toBeNull()
                     if (error instanceof ProcessError) {
                         expect(error.code).toBe(400)
                         expect(error.message).toBe(ERR_MSG.INVALID_PARAM.TEXT_EFFECT.COORDINATES)
@@ -145,12 +154,15 @@ describe("Validator", () => {
                 }
             })
             it("throws an error if `coordinates.y` param is negative", () => {
-                const mockTextEffect = { ...validTextEffect }
+                const mockTextEffect = {
+                    ...validTextEffect,
+                    coordinates: { ...validTextEffect.coordinates }
+                }
                 mockTextEffect.coordinates.y = -1
                 try {
                     funct(mockTextEffect, validTestVideo)
                 } catch (error) {
-                    expect(error).toBeInstanceOf(ProcessError)
+                    expect(error).not.toBeNull()
                     if (error instanceof ProcessError) {
                         expect(error.code).toBe(400)
                         expect(error.message).toBe(ERR_MSG.INVALID_PARAM.TEXT_EFFECT.COORDINATES)
@@ -158,12 +170,15 @@ describe("Validator", () => {
                 }
             })
             it("throws an error if `coordinates.x` param is greater than video x resolution", () => {
-                const mockTextEffect = { ...validTextEffect }
+                const mockTextEffect = {
+                    ...validTextEffect,
+                    coordinates: { ...validTextEffect.coordinates }
+                }
                 mockTextEffect.coordinates.x = validTestVideo.resolution.x + 1
                 try {
                     funct(mockTextEffect, validTestVideo)
                 } catch (error) {
-                    expect(error).toBeInstanceOf(ProcessError)
+                    expect(error).not.toBeNull()
                     if (error instanceof ProcessError) {
                         expect(error.code).toBe(400)
                         expect(error.message).toBe(ERR_MSG.INVALID_PARAM.TEXT_EFFECT.COORDINATES)
@@ -171,12 +186,15 @@ describe("Validator", () => {
                 }
             })
             it("throws an error if `coordinates.y` param is greater than video y resolution", () => {
-                const mockTextEffect = { ...validTextEffect }
+                const mockTextEffect = {
+                    ...validTextEffect,
+                    coordinates: { ...validTextEffect.coordinates }
+                }
                 mockTextEffect.coordinates.y = validTestVideo.resolution.y + 1
                 try {
                     funct(mockTextEffect, validTestVideo)
                 } catch (error) {
-                    expect(error).toBeInstanceOf(ProcessError)
+                    expect(error).not.toBeNull()
                     if (error instanceof ProcessError) {
                         expect(error.code).toBe(400)
                         expect(error.message).toBe(ERR_MSG.INVALID_PARAM.TEXT_EFFECT.COORDINATES)
@@ -191,7 +209,7 @@ describe("Validator", () => {
                 try {
                     funct(mockTextEffect, validTestVideo)
                 } catch (error) {
-                    expect(error).toBeInstanceOf(ProcessError)
+                    expect(error).not.toBeNull()
                     if (error instanceof ProcessError) {
                         expect(error.code).toBe(400)
                         expect(error.message).toBe(ERR_MSG.INVALID_PARAM.TEXT_EFFECT.FONT_SIZE)
@@ -206,7 +224,7 @@ describe("Validator", () => {
                 try {
                     funct(mockTextEffect, validTestVideo)
                 } catch (error) {
-                    expect(error).toBeInstanceOf(ProcessError)
+                    expect(error).not.toBeNull()
                     if (error instanceof ProcessError) {
                         expect(error.code).toBe(400)
                         expect(error.message).toBe(ERR_MSG.INVALID_PARAM.TEXT_EFFECT.FONT_COLOR)
@@ -221,7 +239,7 @@ describe("Validator", () => {
                 try {
                     funct(mockTextEffect, validTestVideo)
                 } catch (error) {
-                    expect(error).toBeInstanceOf(ProcessError)
+                    expect(error).not.toBeNull()
                     if (error instanceof ProcessError) {
                         expect(error.code).toBe(400)
                         expect(error.message).toBe(ERR_MSG.INVALID_PARAM.TEXT_EFFECT.START_TIME)
@@ -234,7 +252,7 @@ describe("Validator", () => {
                 try {
                     funct(mockTextEffect, validTestVideo)
                 } catch (error) {
-                    expect(error).toBeInstanceOf(ProcessError)
+                    expect(error).not.toBeNull()
                     if (error instanceof ProcessError) {
                         expect(error.code).toBe(400)
                         expect(error.message).toBe(ERR_MSG.INVALID_PARAM.TEXT_EFFECT.START_TIME)
@@ -247,7 +265,7 @@ describe("Validator", () => {
                 try {
                     funct(mockTextEffect, validTestVideo)
                 } catch (error) {
-                    expect(error).toBeInstanceOf(ProcessError)
+                    expect(error).not.toBeNull()
                     if (error instanceof ProcessError) {
                         expect(error.code).toBe(400)
                         expect(error.message).toBe(ERR_MSG.INVALID_PARAM.TEXT_EFFECT.END_TIME)
@@ -260,7 +278,7 @@ describe("Validator", () => {
                 try {
                     funct(mockTextEffect, validTestVideo)
                 } catch (error) {
-                    expect(error).toBeInstanceOf(ProcessError)
+                    expect(error).not.toBeNull()
                     if (error instanceof ProcessError) {
                         expect(error.code).toBe(400)
                         expect(error.message).toBe(ERR_MSG.INVALID_PARAM.TEXT_EFFECT.END_TIME)
