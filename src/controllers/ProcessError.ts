@@ -14,6 +14,7 @@ export class ProcessError extends Error {
 
     private getCodeFromMessage(message: string): number {
         const invalidBodyErrors = [
+            ERROR_MESSAGES.INVALID_BODY,
             ERROR_MESSAGES.ABSENT_FROM_BODY.TEXT_EFFECT,
             ERROR_MESSAGES.ABSENT_FROM_BODY.TEST_VIDEO,
             ERROR_MESSAGES.INVALID_PARAM.TEST_VIDEO.INPUT,
