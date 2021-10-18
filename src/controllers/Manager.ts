@@ -1,6 +1,8 @@
 import { Request, Response } from "express"
 import { TestVideo, TextEffect, ValidTextEffectBody } from "../types"
 import { ProcessError } from "./ProcessError"
+import { Validator } from "./Validator"
+import { Builder } from "./Builder"
 import ERR_MSG from "../_config/error_messages"
 
 /**
@@ -12,15 +14,15 @@ export class Manager {
      */
     public static postTextEffect(req: Request, res: Response) {
         try {
-
             const { testVideo, textEffect } = Manager.validateTextEffectBody(req.body)
-            // send testVideo to Validator
-            // send textEffect to Validator
-            // send both to builder & return response
-            // send response code 200 json
+            Validator.validateTestVideo(testVideo)
+            Validator.validateTextEffect(textEffect, testVideo)
+
+            const response = Builder.textEffect(testVideo, textEffect)
+            res.status(200).json(response)
         } catch (error) {
             if (error instanceof ProcessError)
-                res.status(error.code).json({ message: error.message })
+                res.status(error.code).send(error.message)
             else
                 res.sendStatus(500)
         }
