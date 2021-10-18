@@ -1,4 +1,5 @@
 export default {
+    INVALID_BODY: "Invalid body",
     ABSENT_FROM_BODY: {
         TEXT_EFFECT: "'textEffect' param is absent from request body",
         TEST_VIDEO: "'testVideo' param is absent from request body",

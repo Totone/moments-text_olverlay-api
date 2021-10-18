@@ -3,14 +3,16 @@ import ERROR_MESSAGES from "../_config/error_messages"
  * * Handles API response when an error case happens
  */
 export class ProcessError extends Error {
-    public code: number
+    public code: number = 400
     constructor(message: string) {
         super(message)
+        this.name = "ProcessError"
+        Object.setPrototypeOf(this, ProcessError.prototype)
         this.message = message
         this.code = this.getCodeFromMessage(message)
     }
 
-    private getCodeFromMessage(message: string) {
+    private getCodeFromMessage(message: string): number {
         const invalidBodyErrors = [
             ERROR_MESSAGES.ABSENT_FROM_BODY.TEXT_EFFECT,
             ERROR_MESSAGES.ABSENT_FROM_BODY.TEST_VIDEO,
