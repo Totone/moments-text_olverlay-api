@@ -18,6 +18,7 @@
         "comma-style": ["error", "last"],
         "no-multiple-empty-lines": ["warn", {"max": 2, "maxEOF": 0}],
         "eol-last": ["warn", "never"],
-        "arrow-spacing": "warn"
+        "arrow-spacing": "warn",
+        "no-explicit-any": false
     }
 }
